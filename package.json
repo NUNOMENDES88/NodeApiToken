@@ -1,0 +1,26 @@
+{
+  "name": "inscricoesapi",
+  "version": "1.0.0",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "async-middleware": "^1.2.1",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
+    "case-insensitive": "^1.0.0",
+    "express": "^4.17.1",
+    "is-null-or-empty": "0.0.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.7.13",
+    "npm-install-all": "^1.1.21"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.1"
+  },
+  "description": ""
+}

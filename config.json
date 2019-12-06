@@ -1,0 +1,13 @@
+{
+    "hostname": "127.0.0.1",
+    "port" : 3005,
+    "connectionStringMongoDb":"mongodb://localhost/InscricaoDB",
+    "tokenValidation":
+    {
+        "validIssuer":"Ipca - Nuno Mendes",
+        "validSubject" :"a11193@alunos.ipca.pt",
+        "validAudience":"http://www.ipca.pt",
+        "secretKey":"IPCA2019WEBMESTRADO",
+        "expiresInMinutes" : 10
+    }
+}
