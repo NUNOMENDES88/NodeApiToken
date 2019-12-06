@@ -4,17 +4,24 @@ const commonUtil = require('./common.util');
 
 function isLoggedIn(req, res, next)
 {
+    // Get the token in header 
     let token = req.headers.authorization;
-
+    //Check if token is null or empty
     if(commonUtil.isnullOrEmpty(token))
     {
-        return res.status(401).send(commonUtil.responseMessage(401));
+        return res.status(401).send(commonUtil.responseMessage(401,null,"No token provided."));
     }
     
     //token is 'Bearer xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
     let tokenF = token.split(" ");
-    let seconds = (60 * configJson.tokenValidation.expiresInMinutes);
+    if(tokenF.length !=2)
+    {
+        return res.status(401).send(commonUtil.responseMessage(401,null,"Token with incorrect format. Valid Format 'Bearer token'"));
+    }
 
+    //Calculate expire time in seconds
+    let seconds = (60 * configJson.tokenValidation.expiresInMinutes);
+    //Check options to use in token validator
     let verifyOptions = 
     {
         issuer:  configJson.tokenValidation.validIssuer,
@@ -23,11 +30,11 @@ function isLoggedIn(req, res, next)
         expiresIn: seconds
     };
 
-    jwt.verify(tokenF[1], configJson.tokenValidation.secretKey,verifyOptions, function (err, decoded)
+    jwt.verify(tokenF[1], configJson.tokenValidation.secretKey,verifyOptions, (err, decoded) => 
     {
         if (err) 
         {
-            return res.status(401).send(commonUtil.responseMessage(401));
+            return res.status(401).send(commonUtil.responseMessage(401,null,"Invalid authorization token."));
         }
         next();
     });

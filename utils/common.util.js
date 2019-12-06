@@ -42,8 +42,7 @@ function responseMessage(
             responseMessage.Status = 401;
             responseMessage.Title = "Unauthorized";
             responseMessage.ErrorCode = "Api.Request.Unauthorized";
-            responseMessage.ErrorMessage = "The Bearer token is required.";
-            responseMessage.ErrorDetail = null;
+            responseMessage.ErrorMessage = ((isNullOrEmptyModule(errorMessage)) ? "The Bearer token is required." : errorMessage);
             break;
 
         case 404: 

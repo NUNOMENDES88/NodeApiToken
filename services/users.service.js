@@ -12,15 +12,9 @@ async function getValidLogin(model)
         if(!user) {
             return false;
         }
-
-        return await user.comparePassword(model.password, (error, match) => 
-        {
-            return match;
-        });
-
-    } catch (error) {
-        console.log("erro");
-        console.log(error);
+        return await user.comparePassword(model.password);
+    } catch (error)
+    {
         return false;
     }
 }

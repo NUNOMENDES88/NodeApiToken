@@ -16,8 +16,9 @@ usersSchema.pre("save", function(next) {
     next();
 });
 
-usersSchema.methods.comparePassword = function(plaintext, callback) {
-    return callback(null, bcrypt.compareSync(plaintext, this.password));
+usersSchema.methods.comparePassword = function(plaintext)
+{
+    return bcrypt.compareSync(plaintext, this.password)
 };
 
 
